@@ -3,11 +3,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Layout from './layout/Layout';
 import Login from './layout/Login';
-import Clients from './pages/Clients';
-import EditClient from './pages/EditClient';
+import Contacts from './pages/Contacts';
+import EditContact from './pages/EditContact';
 import LoginForm from './pages/LoginForm';
-import NewClient from './pages/NewClient';
-import Principal from './pages/Principal';
+import NewContact from './pages/NewContact';
 
 function App() {
   return (
@@ -16,10 +15,10 @@ function App() {
         <Route path="/" element={<Login />}>
           <Route index element={<LoginForm />} />
         </Route>
-        <Route path="/clients" element={<Layout />}>
-          <Route index element={<Clients />} />
-          <Route path="newClient" element={<NewClient />} />
-          <Route path="editClient/:id" element={<EditClient />} />
+        <Route path="/contacts" element={<Layout />}>
+          <Route index element={<Contacts />} />
+          <Route path="newContact" element={<NewContact />} />
+          <Route path="editContact/:id" element={<EditContact />} />
         </Route>
       </Routes>
     </BrowserRouter>

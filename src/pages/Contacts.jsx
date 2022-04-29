@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const Clients = () => {
+const Contacts = () => {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Clients = () => {
 
     getContactsAPI();
   }, []);
-  return <div>Clients</div>;
+  return <div>Contacts</div>;
 };
 
-export default Clients;
+export default Contacts;

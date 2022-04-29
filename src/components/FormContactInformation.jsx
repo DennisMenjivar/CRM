@@ -49,7 +49,7 @@ const FormContactInformation = ({ children }) => {
       // console.log(result);
 
       // window.location.reload(false);
-      navigate('/clients');
+      navigate('/contacts');
     } catch (error) {
       console.log(error);
     }

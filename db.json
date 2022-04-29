@@ -191,6 +191,22 @@
       "zipCode": "33602",
       "notes": "Interesado en programación.",
       "id": 12
+    },
+    {
+      "name": "Melvin Leonardo Garcia Canales",
+      "birthday": "05/10/1972",
+      "gender": "Man",
+      "married": "Married",
+      "identifier": "0501199304597",
+      "social": "4398758754",
+      "email": "leomel@gmail.com",
+      "telephoneNumber": "81381284734",
+      "address": "710 w park avenue.",
+      "state": "Florida",
+      "city": "Tampa",
+      "zipCode": "33602",
+      "notes": "Busca trabajos de jefe.",
+      "id": 13
     }
   ]
 }
