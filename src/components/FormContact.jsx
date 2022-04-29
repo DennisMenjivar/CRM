@@ -7,19 +7,8 @@ import { FaArrowLeft } from 'react-icons/fa';
 
 const FormContact = () => {
 
+  let [contact, setContact] = useState({});
   const [step, setStep] = useState(1);
-  const [contact, setContact] = useState
-    (
-        {
-        // Contact
-        name: 'Dennis Armando Menjivar Elvir', //Cheque
-        birthday: '04/05/1993',
-        gender: 'Man', //Cheque
-        married: 'Single',
-        identifier: '0501-1993-04597',
-        social: 'Pendiente'
-        }
-    )
 
   const newContactSchema = Yup.object().shape(
       {
@@ -35,9 +24,9 @@ const FormContact = () => {
     )
 
     
-  const handlerSubmit = (value) =>{
+  const handlerSubmit = async (values) =>{
+    await setContact(values);
     setStep(2);
-    console.log(value);
   }
 
   return (
@@ -45,21 +34,29 @@ const FormContact = () => {
       {/* <FormContactProffesionalInfo>{step === 3}</FormContactProffesionalInfo> */}
       
       {/* BACK BUTTON */}
-      <div onClick={()=>{setStep(1)}} className="absolute mt-10 bg-red-500 p-3 text-white uppercase font-bold text-lg rounded-md">
+      <div onClick={()=>{setStep(1)}} className="absolute mt-10 bg-red-500 p-3 text-white uppercase font-bold text-lg rounded-md" hidden={step === 1 ? true :false}>
         <div className="static -left-4 -top-4">
           <FaArrowLeft />
         </div>
       </div>
 
-      <FormContactInformation>{{step: step === 2 ? false: true, contact: contact, hSubmit: handlerSubmit}}</FormContactInformation>
+      <FormContactInformation>{{step: step === 2 ? false: true, contact: contact}}</FormContactInformation>
       <div className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto" hidden={step === 1 ? false: true}>
         <h1 className="text-gray-500 font-bold uppercase text-center">Personal Information</h1>
         <Formik 
         initialValues={
-          contact
+          {
+            // Contact
+            name: '', //Cheque
+            birthday: '',
+            gender: '', //Cheque
+            married: '',
+            identifier: '',
+            social: ''
+          }
         }
-        onSubmit={(value)=>{
-          handlerSubmit(value);
+        onSubmit={(values)=>{
+          handlerSubmit(values);
         }}
 
         validationSchema={newContactSchema}

@@ -1,9 +1,12 @@
-import React from "react";
+
 
 const Principal = () => {
-  return <div>
-      <h1>Principal.jsx</h1>
-  </div>;
+
+  return (
+    <div>
+       <label htmlFor="">aqui</label>
+    </div>
+  )
 };
 
 export default Principal;
