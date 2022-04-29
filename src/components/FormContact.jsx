@@ -4,8 +4,9 @@ import * as Yup from 'yup';
 import MessageRequired from './MessageRequired';
 import FormContactInformation from './FormContactInformation';
 import { FaArrowLeft } from 'react-icons/fa';
+import Spinner from '../components/Spinner';
 
-const FormContact = () => {
+const FormContact = ({ pContact, loading }) => {
   let [contact, setContact] = useState({});
   const [step, setStep] = useState(1);
 
@@ -27,10 +28,10 @@ const FormContact = () => {
     setStep(2);
   };
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <>
-      {/* <FormContactProffesionalInfo>{step === 3}</FormContactProffesionalInfo> */}
-
       {/* BACK BUTTON */}
       <div
         onClick={() => {
@@ -45,7 +46,11 @@ const FormContact = () => {
       </div>
 
       <FormContactInformation>
-        {{ step: step === 2 ? false : true, contact: contact }}
+        {{
+          step: step === 2 ? false : true,
+          contact: contact,
+          pContact: pContact,
+        }}
       </FormContactInformation>
       <div
         className="bg-white mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto"
@@ -57,13 +62,14 @@ const FormContact = () => {
         <Formik
           initialValues={{
             // Contact
-            name: '', //Cheque
-            birthday: '',
-            gender: '', //Cheque
-            married: '',
-            identifier: '',
-            social: '',
+            name: pContact.name || '',
+            birthday: pContact.birthday || '',
+            gender: pContact.gender || '',
+            married: pContact.married || '',
+            identifier: pContact.identifier || '',
+            social: pContact.social || '',
           }}
+          enableReinitialize={true}
           onSubmit={(values) => {
             handlerSubmit(values);
           }}
@@ -180,6 +186,11 @@ const FormContact = () => {
       </div>
     </>
   );
+};
+
+FormContact.defaultProps = {
+  pContact: {},
+  loading: false,
 };
 
 export default FormContact;

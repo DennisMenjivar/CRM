@@ -5,6 +5,9 @@ import MessageRequired from './MessageRequired';
 import { useNavigate } from 'react-router-dom';
 
 const FormContactInformation = ({ children }) => {
+  const { id, email, telephoneNumber, address, state, city, zipCode, notes } =
+    children.pContact;
+
   let navigate = useNavigate();
 
   const newContactInfoSchema = Yup.object().shape({
@@ -35,21 +38,36 @@ const FormContactInformation = ({ children }) => {
 
   const handlerSubmit = async (values) => {
     try {
-      const url = 'http://localhost:4000/contacts';
-      const data = await concatData(values);
+      let contentResult;
+      if (id > 0) {
+        // UPDATE
+        const url = `http://localhost:4000/contacts/${id}`;
+        const data = await concatData(values);
 
-      const contentResult = await fetch(url, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
-      // const result = contentResult.json();
-      // console.log(result);
+        contentResult = await fetch(url, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'PUT',
+          body: JSON.stringify(data),
+        });
+      } else {
+        // CREATE NEW
+        const url = 'http://localhost:4000/contacts';
+        const data = await concatData(values);
+
+        contentResult = await fetch(url, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify(data),
+        });
+      }
+      const result = await contentResult.json();
+      navigate('/contacts');
 
       // window.location.reload(false);
-      navigate('/contacts');
     } catch (error) {
       console.log(error);
     }
@@ -66,14 +84,15 @@ const FormContactInformation = ({ children }) => {
       <Formik
         initialValues={{
           // Contact Info
-          email: '',
-          telephoneNumber: '',
-          address: '',
-          state: '',
-          city: '',
-          zipCode: '',
-          notes: '',
+          email: email || '',
+          telephoneNumber: telephoneNumber || '',
+          address: address || '',
+          state: state || '',
+          city: city || '',
+          zipCode: zipCode || '',
+          notes: notes || '',
         }}
+        enableReinitialize={true}
         onSubmit={async (values, { resetForm }) => {
           await handlerSubmit(values);
           resetForm();
@@ -205,6 +224,10 @@ const FormContactInformation = ({ children }) => {
       </Formik>
     </div>
   );
+};
+
+FormContactInformation.defaultProps = {
+  loading: false,
 };
 
 export default FormContactInformation;

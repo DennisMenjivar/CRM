@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { FaInfo, FaPen, FaTrash } from 'react-icons/fa';
 
-const Contact = ({ contact }) => {
+const Contact = ({ contact, handlerDeleteContact }) => {
   const navigate = useNavigate();
   const { id, name, telephoneNumber, email, gender, city } = contact;
 
@@ -35,12 +35,18 @@ const Contact = ({ contact }) => {
           <button
             type="button"
             className="bg-blue-500 hover:bg-blue-600 text-white p-3 m-1 font-bold text-xs rounded-full"
+            onClick={() => {
+              navigate(`/contacts/editContact/${id}`);
+            }}
           >
             <FaPen />
           </button>
           <button
             type="button"
             className="bg-red-500 hover:bg-red-600 text-white p-3 m-1 font-bold text-xs rounded-full"
+            onClick={() => {
+              handlerDeleteContact(id);
+            }}
           >
             <FaTrash />
           </button>

@@ -44,7 +44,9 @@ const InfoContact = () => {
   return loading ? (
     <Spinner />
   ) : Object.keys(contact).length === 0 ? (
-    <p className="text-bold text-xl">Invalid Data.</p>
+    <p className="text-center font-black uppercase text-red-500">
+      Data not found.
+    </p>
   ) : (
     <div>
       <h1 className="font-black text-2xl text-blue-900">Contact Information</h1>

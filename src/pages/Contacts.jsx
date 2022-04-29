@@ -19,9 +19,27 @@ const Contacts = () => {
         console.log(error);
       }
     };
-
     getContactsAPI();
   }, []);
+
+  const handlerDeleteContact = async (id) => {
+    const confirmData = confirm('¿Do you want to delete ?');
+    if (confirmData) {
+      try {
+        const url = `http://localhost:4000/contacts/${id}`;
+        const contentResult = await fetch(url, {
+          method: 'DELETE',
+        });
+        await contentResult.json();
+        const contactsFiltered = contacts.filter((cont) => cont.id !== id);
+        setContacts(contactsFiltered);
+        // location.reload();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div>
       <h1 className="font-black text-2xl text-blue-900">Contacts</h1>
@@ -40,7 +58,11 @@ const Contacts = () => {
         </thead>
         <tbody>
           {contacts.map((con) => (
-            <Contact key={con.id} contact={con} />
+            <Contact
+              key={con.id}
+              contact={con}
+              handlerDeleteContact={handlerDeleteContact}
+            />
           ))}
         </tbody>
       </table>
