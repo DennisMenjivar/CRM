@@ -9,9 +9,7 @@ const Layout = () => {
   return (
     <div className="flex flex-row min-h-screen">
       <div className="basis-1/4 bg-blue-900 px-5 py-10">
-        <h2 className="text-3xl font-black text-center text-white">
-          CRM - Mega
-        </h2>
+        <h2 className="text-3xl font-black text-center text-white">CRM - US</h2>
         <nav className="mt-10">
           <Link
             className={`${
