@@ -25,7 +25,7 @@ const Contacts = () => {
   return (
     <div>
       <h1 className="font-black text-2xl text-blue-900">Contacts</h1>
-      <p className="mt-1">Manage the contacts.</p>
+      <p className="mt-1">Manage the Contacts.</p>
 
       <table className="w-full mt-5 table-auto shadow bg-white">
         <thead className="bg-blue-800 text-white">
