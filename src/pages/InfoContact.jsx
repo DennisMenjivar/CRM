@@ -27,7 +27,7 @@ const InfoContact = () => {
   useEffect(() => {
     const getContactInfo = async () => {
       try {
-        const url = `http://localhost:4000/contacts/${id}`;
+        const url = `${import.meta.env.VITE_API_URL}/${id}`;
         const contentResult = await fetch(url);
         const result = await contentResult.json();
         setContact(result);

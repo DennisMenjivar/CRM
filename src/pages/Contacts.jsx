@@ -4,10 +4,11 @@ import Contact from '../components/Contact';
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
 
+  // GET CONTACTS
   useEffect(() => {
     const getContactsAPI = async () => {
       try {
-        const url = 'http://localhost:4000/contacts';
+        const url = import.meta.env.VITE_API_URL;
         const contentResult = await fetch(url, {
           headers: {
             'Content-Type': 'application/json',
@@ -22,11 +23,12 @@ const Contacts = () => {
     getContactsAPI();
   }, []);
 
+  // DELETE CONTACT BY ID
   const handlerDeleteContact = async (id) => {
     const confirmData = confirm('¿Do you want to delete ?');
     if (confirmData) {
       try {
-        const url = `http://localhost:4000/contacts/${id}`;
+        const url = `${import.meta.env.VITE_API_URL}/${id}`;
         const contentResult = await fetch(url, {
           method: 'DELETE',
         });

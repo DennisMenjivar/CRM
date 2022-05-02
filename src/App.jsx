@@ -10,6 +10,7 @@ import LoginForm from './pages/LoginForm';
 import NewContact from './pages/NewContact';
 
 function App() {
+  console.log('META: ', import.meta.env);
   return (
     <BrowserRouter>
       <Routes>

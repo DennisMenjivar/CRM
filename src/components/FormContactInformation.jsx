@@ -41,7 +41,7 @@ const FormContactInformation = ({ children }) => {
       let contentResult;
       if (id > 0) {
         // UPDATE
-        const url = `http://localhost:4000/contacts/${id}`;
+        const url = `${import.meta.env.VITE_API_URL}/${id}`;
         const data = await concatData(values);
 
         contentResult = await fetch(url, {
@@ -53,7 +53,7 @@ const FormContactInformation = ({ children }) => {
         });
       } else {
         // CREATE NEW
-        const url = 'http://localhost:4000/contacts';
+        const url = import.meta.env.VITE_API_URL;
         const data = await concatData(values);
 
         contentResult = await fetch(url, {
